@@ -1,82 +1,95 @@
-# This file is used to ignore files which are generated
-# ----------------------------------------------------------------------------
-
-*~
-*.autosave
-*.a
-*.core
-*.moc
-*.o
-*.obj
-*.orig
-*.rej
-*.so
-*.so.*
-*_pch.h.cpp
-*_resource.rc
-*.qm
-.#*
-*.*#
-core
-!core/
-tags
-.DS_Store
-.directory
-*.debug
-Makefile*
-*.prl
-*.app
-moc_*.cpp
-ui_*.h
-qrc_*.cpp
-Thumbs.db
-*.res
-*.rc
-/.qmake.cache
-/.qmake.stash
-
-# qtcreator generated files
-*.pro.user*
-*.qbs.user*
-CMakeLists.txt.user*
-
-# xemacs temporary files
-*.flc
-
-# Vim temporary files
-.*.swp
-
-# Visual Studio generated files
-*.ib_pdb_index
-*.idb
-*.ilk
-*.pdb
-*.sln
-*.suo
-*.vcproj
-*vcproj.*.*.user
-*.ncb
-*.sdf
-*.opensdf
-*.vcxproj
-*vcxproj.*
-
-# MinGW generated files
-*.Debug
-*.Release
-
-# Python byte code
-*.pyc
-
-# Binaries
-# --------
-*.dll
-*.exe
-
-# Directories with generated files
-.moc/
-.obj/
-.pch/
-.rcc/
-.uic/
-/build*/
+# Qt构建文件
+build*/
+build-*/
+*.pro.user*
+*.pro.user
+*.qbs.user*
+*.qbs.user
+CMakeLists.txt.user*
+
+# 编译生成的中间文件
+*.o
+*.obj
+*.res
+*.rc
+*.a
+*.so
+*.so.*
+*.dll
+*.exe
+*.app
+*.qm
+*.moc
+*.core
+*.debug
+*.autosave
+
+# 自动生成的文件
+moc_*.cpp
+ui_*.h
+qrc_*.cpp
+*_pch.h.cpp
+*_resource.rc
+*.prl
+Makefile*
+*.*#
+*~
+
+# Qt Creator临时文件
+/.qmake.cache
+/.qmake.stash
+*.qmake.stash
+
+# Qt生成的目录
+.moc/
+.obj/
+.pch/
+.rcc/
+.uic/
+release/
+debug/
+Debug/
+Release/
+
+# 操作系统文件
+.DS_Store
+.directory
+Thumbs.db
+
+# 备份和临时文件
+*.orig
+*.rej
+.*.swp
+.#*
+tags
+core
+!core/
+
+# Visual Studio生成的文件（如果使用Qt的MSVC套件）
+*.sln
+*.suo
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
+*.ncb
+*.sdf
+*.opensdf
+*.pdb
+*.idb
+*.ilk
+*.ipdb
+*.iobj
+
+# MinGW生成的文件
+*.Debug
+*.Release
+
+# Python字节码（如果有Python脚本）
+*.pyc
+
+# XEmacs临时文件
+*.flc
+
+# 常见的二进制和库文件
+*.lib
+*.exp
