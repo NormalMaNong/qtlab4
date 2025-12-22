@@ -30,6 +30,7 @@ void MainWindow::on_sayButton_clicked()
 {
     if(!ui->sayLineEdit->text().isEmpty()){
         m_chatClient->sendMessage(ui->sayLineEdit->text());
+        ui->sayLineEdit->clear();
     }
 }
 
@@ -38,6 +39,11 @@ void MainWindow::on_logoutButton_clicked()
 {
     m_chatClient->disconnectFromHost();
     ui->stackedWidget->setCurrentWidget(ui->loginPage);
+
+    for(auto aItem : ui->userListWidget->findItems(ui->userNameEdit->text(), Qt::MatchExactly)){
+        ui->userListWidget->removeItemWidget(aItem);
+        delete aItem;
+    }
 
 }
 
@@ -71,11 +77,35 @@ void MainWindow::jsonReceived(const QJsonObject &docObj)
         if(userNameVal.isNull() || !userNameVal.isString())
             return;
         userJoined(userNameVal.toString());
+    }else if(typeVal.toString().compare("userdisconnected", Qt::CaseInsensitive) == 0){
+        const QJsonValue userNameVal = docObj.value("username");
+        if(userNameVal.isNull() || !userNameVal.isString())
+            return;
+        userLeft(userNameVal.toString());
+    }else if(typeVal.toString().compare("userlist", Qt::CaseInsensitive) == 0){
+        const QJsonValue userlistVal = docObj.value("userlist");
+        if(userlistVal.isNull() || !userlistVal.isArray())
+            return;
+        userListReceived(userlistVal.toVariant().toStringList());
     }
 }
 
 void MainWindow::userJoined(const QString &user)
 {
     ui->userListWidget->addItem(user);
+}
+
+void MainWindow::userLeft(const QString &user)
+{
+    for(auto aItem : ui->userListWidget->findItems(user, Qt::MatchExactly)){
+        ui->userListWidget->removeItemWidget(aItem);
+        delete aItem;
+    }
+}
+
+void MainWindow::userListReceived(const QStringList &list)
+{
+    ui->userListWidget->clear();
+    ui->userListWidget->addItems(list);
 }
 
